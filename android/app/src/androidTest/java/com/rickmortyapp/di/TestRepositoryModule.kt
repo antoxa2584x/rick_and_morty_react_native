@@ -3,7 +3,10 @@ package com.rickmortyapp.di
 import android.content.Context
 import androidx.room.Room
 import com.rickmortyapp.TEST_DB_NAME
+import com.rickmortyapp.TEST_REPO_NAME
+import com.rickmortyapp.data.local.CharacterRepositoryImpl
 import com.rickmortyapp.data.local.CharactersDatabase
+import com.rickmortyapp.domain.repository.ICharacterRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,4 +26,12 @@ object TestRepositoryModule {
         ).allowMainThreadQueries()
             .build()
 
+    @Provides
+    @Named(TEST_REPO_NAME)
+    fun provideTestCharacterRepository(
+        @Named(TEST_DB_NAME)
+        database: CharactersDatabase,
+    ): ICharacterRepository {
+        return CharacterRepositoryImpl(database)
+    }
 }
