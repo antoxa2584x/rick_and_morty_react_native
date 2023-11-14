@@ -50,7 +50,7 @@ class TestCharacterDao {
             id = id, isLiked = true
         )
         charactersDao.upsert(character)
-        val characterEntity = charactersDao.isLiked(id)
+        val characterEntity = charactersDao.getCharacter(id)
 
         assertThat(characterEntity).isNotNull()
         assertThat(characterEntity).isEqualTo(character)
@@ -65,7 +65,7 @@ class TestCharacterDao {
             id = id, isLiked = false
         )
         charactersDao.upsert(character)
-        val characterEntity = charactersDao.isLiked(id)
+        val characterEntity = charactersDao.getCharacter(id)
 
         assertThat(characterEntity).isNotNull()
         assertThat(characterEntity).isEqualTo(character)
@@ -75,7 +75,7 @@ class TestCharacterDao {
 
     @Test
     fun getNullCharacter() = runTest {
-        val characterEntity = charactersDao.isLiked(666)
+        val characterEntity = charactersDao.getCharacter(666)
 
         assertThat(characterEntity).isNull()
     }

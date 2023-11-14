@@ -12,5 +12,5 @@ interface CharactersDao {
     suspend fun upsert(likedEntity: CharacterEntity)
 
     @Query("SELECT * FROM characterentity WHERE id = :id ")
-    suspend fun isLiked(id: Int): CharacterEntity?
+    suspend fun getCharacter(id: Int): CharacterEntity?
 }

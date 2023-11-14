@@ -17,7 +17,7 @@ class CharacterRepositoryImpl @Inject constructor(private val database: Characte
     }
 
     override suspend fun getCharacter(id: Int): CharacterPojo? {
-        val characterEntity = database.dao.isLiked(id)
+        val characterEntity = database.dao.getCharacter(id)
         return characterEntity?.toCharacter()
     }
 }
